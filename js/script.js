@@ -1,3 +1,4 @@
+
 /* Задания на урок:
 
 1) Удалить все рекламные блоки со страницы (правая часть сайта)
@@ -13,16 +14,6 @@
 5) Добавить нумерацию выведенных фильмов */
 
 'use strict';
-
-const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
-};
 
 
 
@@ -44,24 +35,85 @@ let genre = document.querySelector('.promo__genre')
 genre.innerHTML='драма'
 
 //3
-let bg = document.querySelector('.promo__bg')
+let bg = document.querySelector('.promo__bg') 
 bg.style.background = 'url("./img/bg.jpg") center/cover no-repeat';
 
 
 
 
+
 //4
-for (let movie of movieDB.movies) {
-    let idx = movieDB.movies.indexOf(movie) + 1
-    let promo_interactive = document.querySelector('.promo__interactive-list')
-    let li = document.createElement('li')
+const ul = document.querySelector('.promo__interactive-list')
+const promoBg = document.querySelector('.promo__bg')
 
-    li.style.fontSize = "30px"
-    li.style.textDecoration = "underline yellow"
-    li.innerHTML = idx + '. ' + movie
 
-    promo_interactive.append(li)
+function reload() {
+
+    ul.innerHTML=""
+
+
+    for (let movie of movies) {
+        let idx = movies.indexOf(movie) 
+        let li = document.createElement('li')
+        let del = document.createElement('div')
+    
+    
+    
+    
+        li.classList.add('promo__interactive-item')
+        del.classList.add('delete')
+    
+    
+        li.innerHTML = `${idx + 1}. ${movie.Title}`
+    
+        li.append(del)
+        ul.append(li)
+    
+        del.onclick = () => {
+           movies.splice(idx, 1)
+            reload()
+        }
+
+
+        li.onclick = () => {
+            promoBg.style.background = `url(${movie.Poster}) no-repeat center/cover`
+        }
+
+
+        let dd = document.querySelector(".promo__genre")
+
+        li.onclick = () => {
+            dd.innerHTML = movie.Genre
+
+          
+        }
+
+        let title = document.querySelector(".promo__title")
+
+
+        li.onclick = () => {
+            title.innerHTML = movie.Title
+           
+        }
+
+
+
+        let descr = document.querySelector(".promo__descr")
+
+
+        li.onclick = () => {
+            descr.innerHTML = movie.Plot
+        }
+
+        
+
+        
+
+
+    }
+    
 }
+reload()
    
 
 
