@@ -45,6 +45,9 @@ bg.style.background = 'url("./img/bg.jpg") center/cover no-repeat';
 //4
 const ul = document.querySelector('.promo__interactive-list')
 const promoBg = document.querySelector('.promo__bg')
+const dd = document.querySelector(".promo__genre")
+const title = document.querySelector(".promo__title")
+const descr = document.querySelector(".promo__descr")
 
 
 function reload() {
@@ -77,37 +80,13 @@ function reload() {
 
         li.onclick = () => {
             promoBg.style.background = `url(${movie.Poster}) no-repeat center/cover`
-        }
-
-
-        let dd = document.querySelector(".promo__genre")
-
-        li.onclick = () => {
             dd.innerHTML = movie.Genre
-
-          
-        }
-
-        let title = document.querySelector(".promo__title")
-
-
-        li.onclick = () => {
             title.innerHTML = movie.Title
-           
-        }
-
-
-
-        let descr = document.querySelector(".promo__descr")
-
-
-        li.onclick = () => {
             descr.innerHTML = movie.Plot
-        }
 
-        
 
-        
+
+        }        
 
 
     }
